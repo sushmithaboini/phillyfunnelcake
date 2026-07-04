@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Philly Funnel Cake — Est. 2021</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<!--
+  ============================================================
+  HOW TO CUSTOMIZE THIS SITE
+  ============================================================
+  - Search for "EDIT ME" comments below.
+  - Menu prices are pulled from your truck's menu board photo
+    (funnel cake $6, churro funnel cake $7, pink lemonade $3).
+    The caramel and sundae items are priced as placeholders —
+    update to your real prices.
+  - Update hours, location, phone, email, and social links in
+    the "Find Us" section and footer.
+  - All photos are your real ones, stored in the /images folder
+    next to this file. Add more by dropping them in that folder
+    and referencing "images/yourfile.jpg".
+  ============================================================
+-->
+
+<style>
+  :root {
+    --ink: #100d0a;
+    --ink-2: #1a1611;
+    --green: #6fae44;
+    --green-deep: #4d7f2e;
+    --cream: #f2ecd8;
+    --cream-dim: #cbc2a6;
+    --line: rgba(242, 236, 216, 0.14);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Work Sans', -apple-system, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display {
+    font-family: 'Anton', 'Arial Black', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1.02;
+    text-transform: uppercase;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- NAV ---------- */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 50;
+    background: rgba(16, 13, 10, 0.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand img {
+    height: 44px; width: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--line);
+  }
+  .brand-text {
+    font-family: 'Anton', sans-serif;
+    font-size: 1.05rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    line-height: 1.1;
+  }
+  .brand-text span { display: block; font-size: 0.65rem; letter-spacing: 2px; font-family: 'Work Sans', sans-serif; text-transform: uppercase; color: var(--cream-dim); }
+
+  .nav-links {
+    display: flex;
+    gap: 28px;
+    font-size: 0.88rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    align-items: center;
+  }
+  .nav-links a:not(.btn) {
+    color: var(--cream-dim);
+    transition: color 0.2s ease;
+  }
+  .nav-links a:not(.btn):hover, .nav-links a:not(.btn):focus-visible { color: var(--green); }
+
+  @media (max-width: 640px) {
+    .nav-links a:not(.btn) { display: none; }
+  }
+
+  /* ---------- HERO ---------- */
+  header.hero {
+    position: relative;
+    min-height: 92vh;
+    display: flex;
+    align-items: center;
+    padding-top: 72px;
+    background:
+      radial-gradient(ellipse at 75% 15%, rgba(111,174,68,0.18), transparent 55%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 44px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--green);
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .eyebrow::before {
+    content: "";
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 10px var(--green);
+  }
+
+  .hero h1 {
+    font-size: clamp(2.6rem, 6.2vw, 4.6rem);
+    color: var(--cream);
+  }
+  .hero h1 em {
+    font-style: normal;
+    color: var(--green);
+    display: block;
+  }
+
+  .hero p.sub {
+    margin-top: 20px;
+    max-width: 48ch;
+    color: var(--cream-dim);
+    font-size: 1.08rem;
+  }
+
+  .hero-ctas {
+    margin-top: 32px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 14px 28px;
+    border-radius: 3px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+  }
+  .btn-primary {
+    background: var(--green);
+    color: var(--ink);
+  }
+  .btn-primary:hover, .btn-primary:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(111,174,68,0.35);
+  }
+  .btn-ghost {
+    border-color: var(--cream-dim);
+    color: var(--cream);
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible {
+    border-color: var(--green);
+    color: var(--green);
+  }
+
+  .hero-photo {
+    position: relative;
+    border-radius: 6px;
+    overflow: hidden;
+    aspect-ratio: 4/5;
+    border: 1px solid var(--line);
+  }
+  .hero-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .hero-photo .tag {
+    position: absolute;
+    bottom: 18px; left: 18px;
+    background: var(--green);
+    color: var(--ink);
+    font-family: 'Anton', sans-serif;
+    font-size: 0.78rem;
+    padding: 8px 14px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 860px) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-photo { order: -1; aspect-ratio: 16/10; }
+  }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section-head { text-align: center; margin-bottom: 48px; }
+  .section-head .eyebrow { justify-content: center; }
+  .section-head h2 { font-size: clamp(2rem, 4vw, 2.8rem); color: var(--cream); }
+  .section-head h2 span { color: var(--green); }
+
+  section { padding: 100px 0; }
+
+  /* ---------- MENU BOARD ---------- */
+  #menu {
+    background: var(--ink-2);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .menu-board {
+    background: #0c0a08;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 48px;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.5);
+  }
+
+  .menu-col-title {
+    font-family: 'Anton', sans-serif;
+    color: var(--green);
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed var(--line);
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 700px) {
+    .menu-grid { grid-template-columns: 1fr; gap: 36px; }
+    .menu-board { padding: 28px; }
+  }
+
+  .menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px dotted var(--line);
+  }
+  .menu-item:last-child { border-bottom: none; }
+  .menu-item-name { font-weight: 600; color: var(--cream); }
+  .menu-item-desc {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .menu-item-price {
+    font-family: 'Anton', sans-serif;
+    color: var(--green);
+    font-size: 1.05rem;
+    white-space: nowrap;
+  }
+
+  .menu-note {
+    margin-top: 28px;
+    font-size: 0.85rem;
+    color: var(--cream-dim);
+    text-align: center;
+  }
+
+  /* ---------- GALLERY ---------- */
+  .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .gallery img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--line);
+    transition: transform 0.3s ease;
+  }
+  .gallery img:hover { transform: scale(1.03); }
+  @media (max-width: 700px) {
+    .gallery { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ---------- FIND US ---------- */
+  #find-us { background: var(--ink-2); border-top: 1px solid var(--line); }
+
+  .find-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+  @media (max-width: 800px) {
+    .find-grid { grid-template-columns: 1fr; }
+  }
+
+  .info-card {
+    background: var(--ink);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 32px;
+  }
+  .info-card h3 {
+    color: var(--green);
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+  }
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.95rem;
+  }
+  .hours-row:last-child { border-bottom: none; }
+  .hours-row .day { color: var(--cream-dim); }
+
+  .contact-list a, .contact-list div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.98rem;
+  }
+  .contact-list a:hover { color: var(--green); }
+  .contact-list a:last-child, .contact-list div:last-child { border-bottom: none; }
+  .contact-icon { width: 20px; text-align: center; color: var(--green); }
+
+  .social-row { display: flex; gap: 12px; margin-top: 20px; }
+  .social-row a {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    font-size: 0.8rem;
+    transition: all 0.2s ease;
+  }
+  .social-row a:hover {
+    background: var(--green);
+    color: var(--ink);
+    border-color: var(--green);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer {
+    padding: 40px 0;
+    text-align: center;
+    color: var(--cream-dim);
+    font-size: 0.85rem;
+    border-top: 1px solid var(--line);
+  }
+  footer .brand { justify-content: center; margin-bottom: 14px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav>
+  <div class="wrap">
+    <div class="brand">
+      <img src="images/logo.jpg" alt="Philly Funnel Cake logo">
+      <div class="brand-text">Philly Funnel Cake<span>Est. 2021</span></div>
+    </div>
+    <div class="nav-links">
+      <a href="#menu">Menu</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#find-us">Find Us</a>
+      <a href="#find-us" class="btn btn-primary" style="padding:8px 18px;">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">Philadelphia's Funnel Cake Truck</div>
+      <h1>Fried fresh.<br><em>Served hot.</em></h1>
+      <p class="sub">
+        Philly Funnel Cake has been slinging golden, made-to-order funnel
+        cakes around the city since 2021 — piled high with powdered sugar,
+        caramel, chocolate, and whatever else makes a Saturday better.
+        Find the truck, grab a plate, lick your fingers.
+      </p>
+      <div class="hero-ctas">
+        <a href="#find-us" class="btn btn-primary">Find the Truck</a>
+        <a href="#menu" class="btn btn-ghost">See the Menu</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="images/truck-front.jpg" alt="Philly Funnel Cake food truck serving window">
+      <div class="tag">Open Today</div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MENU ============ -->
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Made to Order</div>
+      <h2>The <span>Menu</span></h2>
+    </div>
+
+    <div class="menu-board">
+      <div class="menu-grid">
+        <div>
+          <div class="menu-col-title">Funnel Cakes</div>
+
+          <!-- EDIT ME: confirm/adjust prices — the first two match your truck's menu board -->
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Classic Funnel Cake</div>
+              <span class="menu-item-desc">Fried fresh, dusted with powdered sugar</span>
+            </div>
+            <div class="menu-item-price">$6</div>
+          </div>
+
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Churro Funnel Cake</div>
+              <span class="menu-item-desc">Cinnamon sugar, churro style</span>
+            </div>
+            <div class="menu-item-price">$7</div>
+          </div>
+
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Caramel Dream</div>
+              <span class="menu-item-desc">Caramel drizzle, whipped cream</span>
+            </div>
+            <div class="menu-item-price">$8</div>
+          </div>
+
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Sundae Style</div>
+              <span class="menu-item-desc">Vanilla ice cream, chocolate &amp; strawberry drizzle</span>
+            </div>
+            <div class="menu-item-price">$9</div>
+          </div>
+        </div>
+
+        <div>
+          <div class="menu-col-title">Drinks &amp; Extras</div>
+
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Pink Lemonade</div>
+              <span class="menu-item-desc">Ice cold, made fresh</span>
+            </div>
+            <div class="menu-item-price">$3</div>
+          </div>
+
+          <!-- EDIT ME: add more drinks/toppings/sides here -->
+          <div class="menu-item">
+            <div>
+              <div class="menu-item-name">Extra Topping</div>
+              <span class="menu-item-desc">Add caramel, chocolate, or strawberry sauce</span>
+            </div>
+            <div class="menu-item-price">$1</div>
+          </div>
+        </div>
+      </div>
+      <p class="menu-note">Prices and menu may vary slightly by location — ask us on the truck!</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">A Taste, Visually</div>
+      <h2>From the <span>Window</span></h2>
+    </div>
+    <div class="gallery">
+      <img src="images/funnel-classic.jpg" alt="Classic funnel cake with powdered sugar">
+      <img src="images/funnel-caramel.jpg" alt="Funnel cake with caramel drizzle and whipped cream">
+      <img src="images/funnel-sundae.jpg" alt="Funnel cake sundae with ice cream, chocolate and strawberry sauce">
+      <img src="images/truck-mural.jpg" alt="Side of the Philly Funnel Cake truck with graffiti-style mural">
+      <img src="images/truck-front.jpg" alt="Front serving window of the Philly Funnel Cake truck">
+      <img src="images/logo.jpg" alt="Philly Funnel Cake logo, Est. 2021">
+    </div>
+  </div>
+</section>
+
+<!-- ============ FIND US / CONTACT ============ -->
+<section id="find-us">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Come Say Hi</div>
+      <h2>Find <span>the Truck</span></h2>
+    </div>
+
+    <div class="find-grid">
+      <!-- EDIT ME: update your real hours and locations -->
+      <div class="info-card">
+        <h3>This Week's Hours &amp; Spot</h3>
+        <div class="hours-row"><span class="day">Mon</span><span>Off the road</span></div>
+        <div class="hours-row"><span class="day">Tue – Fri</span><span>11am – 6pm · TBD</span></div>
+        <div class="hours-row"><span class="day">Sat</span><span>12pm – 8pm · TBD</span></div>
+        <div class="hours-row"><span class="day">Sun</span><span>12pm – 6pm · TBD</span></div>
+        <p style="margin-top:16px; font-size:0.85rem; color:var(--cream-dim);">
+          Locations shift week to week around Philadelphia — follow us on
+          social for the daily drop pin.
+        </p>
+      </div>
+
+      <!-- EDIT ME: add a phone number and/or email here whenever you have one you want public.
+           Just copy this pattern:
+           <a href="tel:+1XXXXXXXXXX"><span class="contact-icon">☎</span> (XXX) XXX-XXXX</a>
+           <a href="mailto:you@example.com"><span class="contact-icon">✉</span> you@example.com</a> -->
+      <div class="info-card">
+        <h3>Get in Touch</h3>
+        <div class="contact-list">
+          <a href="https://instagram.com/phillyfunnelcake" target="_blank" rel="noopener">
+            <span class="contact-icon">📷</span> @phillyfunnelcake
+          </a>
+          <div>
+            <span class="contact-icon">📍</span> Roaming — Philadelphia, PA
+          </div>
+        </div>
+        <div class="social-row">
+          <a href="https://instagram.com/phillyfunnelcake" target="_blank" rel="noopener" aria-label="Instagram">IG</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="brand">
+      <img src="images/logo.jpg" alt="Philly Funnel Cake logo">
+      <div class="brand-text">Philly Funnel Cake<span>Est. 2021</span></div>
+    </div>
+    <p>&copy; <span id="year"></span> Philly Funnel Cake. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
